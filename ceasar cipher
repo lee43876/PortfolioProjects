@@ -1,0 +1,56 @@
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+'s', 't', 'u', 'v', 'w', 'x', 'y', 'z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+def caesar(start_text, shift_amount, cipher_direction):
+    end_text = ""
+    if cipher_direction == "decode":
+        shift_amount *= -1
+    for char in start_text:
+        if char in alphabet: # to make sure symbols are not encoded or decoded because it's not in my list
+            position = alphabet.index(char)
+            new_position = position + shift_amount
+            end_text = alphabet[new_position]
+        else:
+            end_text += char
+    print(f"{cipher_direction}d text is {end_text}")
+
+
+again = True
+while again:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    shift = shift % 26
+    caesar(start_text=text, shift_amount = shift, cipher_direction = direction )
+    result = input("start again? 'y' or 'n':")
+
+    if result == 'n':
+        again = False
+        print("BYE")
+
+# def encrpt(plain_text, shift_amount):
+#     cipher_text =""
+#     for letter in plain_text:
+#         position = alphabet.index(letter)
+#         new_position = position + shift_amount # new _position = position - shift_amount
+#         new_letter = alphabet[new_position]
+#         cipher_text += new_letter
+#         print(f"the encoded test is {cipher_text}")
+
+# def encrypt(plain_text, shift_amount):
+#      end_text=""
+#      for letter in plain_text:
+#        position = alphabet.index(letter)  # getting the index of a letter in a list , #position = alphabet[index] # this is getting the letter not the index the difference
+#        new_position = position + shift_amount # new position index 0,1,2 , add shift_amount
+#        new_letter = alphabet[new_position]  #new_letter = alphabet[new_position ] alphabet [0+position] new letter
+#        cipher_text += new_letter #add it to the string cipher test
+#        print(f"The encoded text is {end_text}")
+
+# def decrypt(cipher_text, shift_amount):
+#       plain_text=""
+#       for letter in cipher_text:
+#           position = alphabet.index(letter)  #position = alphabet[index] # this is getting the letter not the index the difference
+#           new_position = position - shift_amount
+#           plain_text += alphabet[new_position]
+#       print(f"The decoded text is {plain_text}")
